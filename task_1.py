@@ -1,10 +1,10 @@
 import sqlite3
 
-# подключение
+# Подключение
 conn = sqlite3.connect("students.db")
 cursor = conn.cursor()
 
-# таблица
+# Таблица
 cursor.execute("""
 CREATE TABLE IF NOT EXISTS students (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -18,7 +18,7 @@ CREATE TABLE IF NOT EXISTS students (
 conn.commit()
 
 
-# ➕ добавить
+# Добавление
 def add_student():
     name = input("Имя: ")
     surname = input("Фамилия: ")
@@ -36,13 +36,13 @@ def add_student():
     conn.commit()
 
 
-# 📋 все студенты
+# Все студенты
 def show_all():
     for row in cursor.execute("SELECT * FROM students"):
         print(row)
 
 
-# 🔍 один студент
+# Один студент
 def show_one():
     student_id = input("ID: ")
 
@@ -59,7 +59,7 @@ def show_one():
         print("Не найден")
 
 
-# ✏️ редактирование
+# Редактирование
 def edit_student():
     student_id = input("ID: ")
     name = input("Новое имя: ")
@@ -68,14 +68,14 @@ def edit_student():
     conn.commit()
 
 
-# ❌ удаление
+# Удаление
 def delete_student():
     student_id = input("ID: ")
     cursor.execute("DELETE FROM students WHERE id=?", (student_id,))
     conn.commit()
 
 
-# 📊 средний по группе
+# Средний по группе
 def group_avg():
     group = input("Группа: ")
 
@@ -93,7 +93,7 @@ def group_avg():
         print("Нет данных")
 
 
-# меню
+# Меню
 while True:
     print("\n1 Добавить")
     print("2 Показать всех")
